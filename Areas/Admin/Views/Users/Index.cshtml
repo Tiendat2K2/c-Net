@@ -1,0 +1,68 @@
+﻿ @model IEnumerable<WebBanQuanAo.Models.User>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Users</h1>
+<p>
+    <a class="btn btn-primary" id="createNew" asp-action="Create">Create New</a>
+</p>
+<form asp-action="Search" method="post">
+    <p>
+        <input type="text" name="searchString" placeholder="Search">
+        <button type="submit" class="btn btn-secondary">Search</button>
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr class="alert alert-warning">
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr class="alert alert-primary">
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody> 
+ 
+
+
+ </table> 
